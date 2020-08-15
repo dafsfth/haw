@@ -3,9 +3,9 @@ def insert_sort(A):
         x = A[i]
         j = i - 1
         while j >= 0 and A[j] > x:
-            A[j+1] = A[j]  # ∫Û“∆
+            A[j+1] = A[j]  # ÂêéÁßª
             j -= 1
-        A[j+1] = x
+        A[j+1] = x  # Ë°•
 
 
 Al = [10, 3, 2, 14, 23, 34, 9, 5, 7, 9, 3, 10]
