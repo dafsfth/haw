@@ -1,6 +1,11 @@
+
 from pylab import *
 # import numpy as np
 # import matplotlib.pyplot as plt
+
+
+rcParams['font.sans-serif'] = ['SimHei']  # 乱码
+rcParams['axes.unicode_minus'] = False
 
 
 def test1():
@@ -362,8 +367,85 @@ def test15():
     show()
 
 
-test15()
+# 区间和平行线
+def test17():
+    y = []
+    for i in range(10):
+        y.append(random.randint(10, 70))
+    x = [i for i in range(10)]
 
+    bar(x, y, align='center', color='green', )
+    xlabel('x'), ylabel('y')
+
+    fig = gcf()
+    fig.set_size_inches(10, 10)  # 设置图的大小
+    grid(ls='--', c='r')
+
+    axhline(y=30, c='k', lw=1.4, ls='-')  # 平行于x轴的直线
+    axvline(x=3, c='b', lw=2, ls='--')
+
+    axhspan(ymin=10, ymax=30, facecolor='r')  # 两条线之间
+    axvspan(xmin=3, xmax=4, facecolor='b')
+
+    show()
+
+
+# 条形图的累加
+def test18():
+    y1 = [10, 39, 28]
+    y2 = [23, 45, 12]
+    y3 = [12, 34, 43]
+    x = [1, 2, 3]
+    y4 = [y1[i] + y2[i] for i in range(len(y1))]
+    bar(x, y1, color='g', label='一')
+    bar(x, y2, color='b', label='二', bottom=y1)
+    bar(x, y3, color='r', label='三', bottom=y4)
+    # legend(loc='best')
+    legend(bbox_to_anchor=(1.15, 0.8))   # 将图例放到画布外
+
+    show()
+
+
+# 直方图
+def test19():
+    import random
+    X = []
+    for i in range(10):
+        X.append(random.randint(10, 30))
+
+    hist(X, bins=10, color='r', edgecolor='k', density=True)
+    xlabel('x'), ylabel('y')
+
+    show()
+
+
+# 箱线图
+def test20():
+    x = [12, 23, 32, 34, 43, 34, 54, 30, 29, 38, 28, 18, 20]
+    boxplot(x,
+            patch_artist=True,  # 是否填充箱体颜色
+            showmeans=True,  # 是否显示均值
+            meanprops={'marker': 'D', 'markerfacecolor': 'white', 'markersize': 5},  # 均值属性
+            showfliers=True,   # 显示异常值
+            boxprops={'color': 'r', 'facecolor': 'b'},  # 箱体属性
+            flierprops={'marker': 'o', 'markerfacecolor': 'r', 'markersize': 5},  # 异常值属性
+            medianprops={'linestyle': '--', 'color': 'orange'})
+    show()
+
+
+# 刻度文字斜放
+def test21():
+    labels = [
+        '国民总收入(亿元)', '国内生产总值(亿元)', '第一产业增加值(亿元)', '第二产业增加值(亿元)', '第三产业增加值(亿元)',
+        '人均国内生产总值(元)'
+    ]
+    X = [i for i in range(1, 7)]
+    Y = [20, 24, 25, 29, 34, 36]
+    plot(X, Y)
+    xticks([1, 2, 3, 4, 5, 6], labels, rotation=45)
+    show()
+
+test21()
 
 
 
