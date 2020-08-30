@@ -1,7 +1,7 @@
 
 from pylab import *
 # import numpy as np
-# import matplotlib.pyplot as plt
+import matplotlib as mpl
 
 
 rcParams['font.sans-serif'] = ['SimHei']  # 乱码
@@ -137,6 +137,30 @@ def test4():
     show()
 
 
+def test41():
+    subplot2grid((3, 3), (0, 0), colspan=3, rowspan=1)
+    xticks([]), yticks([])
+    text(0.5, 0.5, 'Axes 1', ha='center', va='center', size=24, alpha=.5)
+
+    subplot2grid((3, 3), (1, 0), colspan=2, rowspan=1)
+    xticks([]), yticks([])
+    text(0.5, 0.5, 'Axes 2', ha='center', va='center', size=24, alpha=.5)
+
+    subplot2grid((3, 3), (1, 2), colspan=1, rowspan=2)
+    xticks([]), yticks([])
+    text(0.5, 0.5, 'Axes 3', ha='center', va='center', size=24, alpha=.5)
+
+    subplot2grid((3, 3), (2, 0), colspan=1, rowspan=1)
+    xticks([]), yticks([])
+    text(0.5, 0.5, 'Axes 4', ha='center', va='center', size=24, alpha=.5)
+
+    subplot2grid((3, 3), (2, 1), colspan=1, rowspan=1)
+    xticks([]), yticks([])
+    text(0.5, 0.5, 'Axes 5', ha='center', va='center', size=24, alpha=.5)
+
+    show()
+
+
 # 填充
 def test5():
     x = np.linspace(-pi, pi, 256, endpoint=True)
@@ -174,6 +198,13 @@ def test6():
     show()
 
 
+# seaborn
+def test25():
+    data = read_excel('h1.xlsx')
+    scatterplot(x='key', y='value', hue='季度', s=20, style='季度')
+    show()
+
+
 # 条形图
 def test7():
     n = 12
@@ -200,6 +231,59 @@ def test7():
     xticks([]), yticks([])
     ylim(-1.25, 1.5)
 
+    show()
+
+
+# 条形图的累加
+def test18():
+    y1 = [10, 39, 28]
+    y2 = [23, 45, 12]
+    y3 = [12, 34, 43]
+    x = [1, 2, 3]
+    y4 = [y1[i] + y2[i] for i in range(len(y1))]
+    bar(x, y1, color='g', label='一')
+    bar(x, y2, color='b', label='二', bottom=y1)
+    bar(x, y3, color='r', label='三', bottom=y4)
+    # legend(loc='best')
+    legend(bbox_to_anchor=(1.15, 0.8), ncol=3)   # 将图例放到画布外
+
+    show()
+
+
+# 更换x，y轴
+def test23():
+    x = [1, 2, 3, 4, 5, 6]
+    y = [23, 45, 29, 36, 48, 39]
+    subplot(121)
+    title('水平')
+    xlabel('x'), ylabel('y')
+    barplot(x=y, y=x, color='b', orient='h')
+    yticks(x[::-1])
+    for i,j in enumerate(y):
+        text(j+0.3, i, '%d' % j, ha='center', va='center', color='r')
+
+    subplot(122)
+    title('垂直')
+    barplot(x=x, y=y, color='r', orient='v')
+    xlabel('x'), ylabel('y')
+    for i,j in enumerate(y):
+        text(i, j+0.3, '%d' % j, ha='center', va='center', color='b')
+
+    show()
+
+
+# seaborn
+def test24():
+    # x = [1, 2, 3, 4]
+    # y1 = [23, 34, 25, 43]
+    # y2 = [43, 36, 47, 56]
+    # y3 = [35, 42, 46, 54]
+    # y = [y1, y2, y3]
+    data = read_excel('h1.xlsx')
+    print(data)
+    # data = mat([x, y1, y2, y3])
+    # print(shape(data))
+    barplot(x='季度', y='value', data=data, hue='产业', palette='husl')
     show()
 
 
@@ -390,20 +474,7 @@ def test17():
     show()
 
 
-# 条形图的累加
-def test18():
-    y1 = [10, 39, 28]
-    y2 = [23, 45, 12]
-    y3 = [12, 34, 43]
-    x = [1, 2, 3]
-    y4 = [y1[i] + y2[i] for i in range(len(y1))]
-    bar(x, y1, color='g', label='一')
-    bar(x, y2, color='b', label='二', bottom=y1)
-    bar(x, y3, color='r', label='三', bottom=y4)
-    # legend(loc='best')
-    legend(bbox_to_anchor=(1.15, 0.8))   # 将图例放到画布外
 
-    show()
 
 
 # 直方图
@@ -435,6 +506,8 @@ def test20():
 
 # 刻度文字斜放
 def test21():
+    fig = figure(figsize=(8, 7))
+    fig.add_axes([0.2, 0.4, 0.4, 0.3])  # 移动画布
     labels = [
         '国民总收入(亿元)', '国内生产总值(亿元)', '第一产业增加值(亿元)', '第二产业增加值(亿元)', '第三产业增加值(亿元)',
         '人均国内生产总值(元)'
@@ -445,7 +518,26 @@ def test21():
     xticks([1, 2, 3, 4, 5, 6], labels, rotation=45)
     show()
 
-test21()
+
+# 双坐标
+def test22():
+    y1 = [100, 120, 139, 142, 124, 200]
+    y2 = [1, 3, 2, 5, 9, 7]
+    x = range(1, 7)
+
+    set(style='darkgrid')   # 设置样式， 中文会乱码------
+    plot(x, y1, label='坐标一', c='r', ls='-', lw=2)
+    legend(loc=0)
+
+    twinx()
+    plot(x, y2, label='坐标二', c='b', ls='--', lw=1)
+    legend(loc=9)
+
+    show()
 
 
-
+def test27():
+    t0 = go.Scatter(x=[1, 2, 3, 4], y=[21, 23, 28, 25])
+    t1 = go.Scatter(x=[1,2, 3, 4], y=[34, 32, 36, 37])
+    t = [t0, t1]
+    
