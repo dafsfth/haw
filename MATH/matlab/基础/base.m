@@ -175,16 +175,472 @@ pai = 4 * y;
 % plot(x, [sin(x); sin(2*x); sin(3*x)]);
 % legend('sin(x)', 'sin(2*x)', 'sin(3*x)');
 % 
- subplot(223)
- t = linspace(0, 2*pi, 100);
- x = sin(t); y = cos(t);
- plot(x, y, 'b-');
- hold on
- plot(2*x, 2*y, 'r--')
- axis([-2.2, 2.2, -2.2, 2.2])
- grid on
- axis equal
+% subplot(223)
+% t = linspace(0, 2*pi, 100);
+% x = sin(t); y = cos(t);
+% plot(x, y, 'b-');
+% hold on     
+% plot(2*x, 2*y, 'r--')
+% axis([-2.2, 2.2, -2.2, 2.2])
+% grid on
+% axis equal
 % -----------------------------对数坐标--------------------------------------------
+% x = linspace(0, 10, 100);
+% y = 1./x;
+% subplot(221)
+% plot(x, y);
+% title('plot(x, y)');
+% 
+% subplot(222)
+% semilogx(x, y)         % 半对数刻度
+% title('semilogx(x, y)');
+% grid on
+% 
+% subplot(223)
+% semilogy(x, y)              % 半对数刻度
+% title('semilogy(x, y');
+% grid on
+% 
+% subplot(224)
+% loglog(x, y)    % 全对数坐标  对数刻度
+% title('loglog(x, y)');
+% grid on
+% -------------------------------------------------------------------------
+
+
+
+% ----------------------极坐标---------------------------------------------
+% t = linspace(0, 2*pi, 200);
+% r = 1 - sin(t);
+% t1 = t - pi / 2;
+% r1 = 1 - sin(t1);
+% 
+% subplot(121)
+% polar(t, r)
+% 
+% subplot(122)
+% polar(t, r1)
+% -------------------------------------------------------------------------
+
+% ------------------------条形图-------------------------------------------
+% y = [1, 2, 3, 4, 5; 1, 2, 1, 2, 1; 5, 4, 3, 2, 1];
+% 
+% subplot(121)
+% bar(y)
+% title('group');
+% 
+% subplot(122)
+% bar(y, 'stacked')
+% title('stack')
+
+
+% x = [2015, 2016, 2017];
+% y = [68, 80, 115, 98, 102;
+%     75, 88, 102, 99, 110;
+%     81, 86, 125, 105, 115];
+% 
+% bar(x, y)
+% title('group');
+% 
+
+
+% subplot(3,1,1), 
+% bar(rand(10,5),'stacked'), 
+% colormap(cool)
+%               
+% subplot(3,1,2), 
+% bar(0:.25:1,rand(5),1)
+%               
+% subplot(3,1,3), 
+% bar(rand(2,3),.75,'grouped')
+
+% -------------------------------------------------------------------------
+
+
+
+% --------------------------直方图-----------------------------------------
+% y = randn(500, 1);
+% subplot(121)
+% hist(y)
+% title('高斯分布直方图');
+% 
+% subplot(122)
+% x = -3: 0.2: 3;   %　数量
+% hist(y, x)
+% title('指定区间中心点的直方图');
+
+
+% 极坐标下的直方图
+% y = randn(500, 1);
+% theta = y * pi;
+% rose(theta)
+% title('在极坐标下的直方图');
+% -------------------------------------------------------------------------
+
+
+
+% ------------------------扇形图-------------------------------------------
+% score = [5, 17, 23, 9, 4];
+% ex = [0, 0, 0, 0, 1];
+% subplot(121)
+% pie(score, ex)
+% legend('优秀', '良好', '中', '及格', '不及格', 'location', 'eastoutside');  % estoutside 右侧
+% 
+% subplot(122)
+% area(score)
+% ==========================================================================
+
+
+% =========================散点图==========================================
+% 桃心曲线方程
+% t = linspace(0, 2*pi, 200);
+% x = 16 * sin(t).^3;
+% y = 13 * cos(t) - 5 * cos(2*t) -2 * cos(3*t) - cos(4*t);
+% subplot(121)
+% scatter(x, y, 'rd', 'filled')
+% 
+% subplot(122)
+% plot(x, y, 'r')
+
+%=======================矢量图=============================================
+% compass 罗盘图
+% feather  羽毛图
+% quiver  箭头图
+
+% A = [4, 5]; B = [-10, 0]; C = A + B;
+% hold on
+% quiver(0, 0, A(1), A(2))
+% quiver(0, 0, B(1), B(2))
+% quiver(0, 0, C(1), C(2))
+% axis([-12, 6, -1, 6])
+% =========================================================================
+
+
+% ============================三维图=======================================
+% x = [1, 2, 3, 4, 5];
+% y = [2, 4, 6, 8, 10];
+% z = [1, 3, 5, 7, 9];
+% plot3(x, y, z)
+% grid on
+% axis([0, 6, 1, 11, 0, 10])
+
+%  螺旋线
+% t = linspace(0, 10*pi, 200);
+% x = sin(t) + t.*cos(t);
+% y = cos(t) - t.*sin(t);
+% z = t;
+% 
+% subplot(121)
+% plot3(x, y, z)
+% grid  on
+% 
+% subplot(122)
+% plot3(x(1:4:200), y(1:4:200), z(1:4:200))
+% grid on
+
+
+% t = 0: 0.01: 2*pi;
+% t = t';
+% x = [t, t, t, t, t];
+% y = [sin(t), sin(t)+1, sin(t)+2, sin(t)+3, sin(t)+4];
+% z = [t,t, t, t, t];
+% 
+% plot3(x, y, z)
+
+% 
+% t = linspace(0, 6*pi, 300);
+% x = cos(t);
+% y = sin(t);
+% z = 2*t;
+% 
+% plot3(x, y, z, 'b-')
+% xlabel('x'), ylabel('y'), zlabel('z');
+% grid on
+
+
+% 墨西哥冒顶曲线
+% xt = @(t) exp(-t/10).*sin(5*t);
+% yt = @(t) exp(-t/10).*cos(5*t);
+% zt = @(t) t;
+% fplot3(xt, yt, zt, [-12, 12], 'r-.')  % 自变量的变化范围
+
+% ======================三维曲面===========================================
+% x = 2:7; y = 3:8;
+% [X, Y] = meshgrid(x, y);
+% Z = randn(size(X));
+% plot3(X, Y, Z)
+% grid on
+
+
+% t = linspace(-2, 2, 20);
+% [X, Y] = meshgrid(t);   % x分隔
+% Z = X .* exp(X.^2 - Y.^2);
+% 
+% subplot(131)
+% mesh(X, Y, Z);
+% 
+% subplot(132)
+% surf(X, Y, Z)  
+% 
+% subplot(133)
+% plot3(X,  Y, Z)
+% 
+% grid on
+
+% meshc 网格等高线
+% meshz 底座
+%  surfl   光照效果
+
+% [x, y] = meshgrid(0: 0.1: 2, 0: 0.1: 3);
+% z = (x-1).^2 - (y-2).^2 - 1;
+% 
+% subplot(221)
+% meshc(x, y, z)
+% title('meshc');
+% 
+% subplot(222)
+% meshz(x, y, z)
+% title('meshz');
+% 
+% subplot(223)
+% surfc(x, y, z)
+% title('surfc');
+% 
+% subplot(224)
+% surfl(x, y, z)
+% title('surfl');
+
+% =========三维圆柱
+% subplot(131)
+% [x, y, z] = cylinder;
+% surf(x, y, z)
+% 
+% subplot(132)
+% t = linspace(0, 2*pi, 40);
+% [x, y, z] = cylinder(2*cos(t), 30);
+% surf(x, y, z)
+% 
+% subplot(133)
+% [x, y, z] = cylinder(0: 0.2: 2, 30);
+% surf(x, y, z)
+% xlabel('x'), ylabel('y'), zlabel('z')
+
+% 
+% [x, y, z] = cylinder(1, 60);   %, x, y, z  (2, 61)
+% z = [-1*z(2, :); z(2, :)];     %使z轴的长度 等于底面圆的直径
+% disp(size(z));
+% surf(x, y, z)
+% hold on
+% surf(y, z, x)
+% axis equal
+% xlabel('x'), ylabel('y'), zlabel('z')
+
+
+% % 有两个自变量时使用fsurf
+% funx = @(u, v) u.*sin(v);
+% funy = @(u, v) -u.*cos(v);
+% funz = @(u, v) v;
+% fsurf(funx, funy, funz, [-5, 5, -5, 2])
+% hold on
+% fmesh(funx, funy, funz, [-5, 5, -2, 2])
+% hold off
+
+
+% =========================================================================
+% 视点处理
+% view（az, el）  az, 方位角，仰角
+
+
+% [x, y] = meshgrid(0: 0.1: 2, 0: 0.1: 3);
+% z = (x-1).^2 - (y-2).^2 - 1;
+% 
+% subplot(221)
+% meshc(x, y, z)
+% title('方位角=-37.5{\cric}, 仰角=30{\cric}');
+% 
+% subplot(222)
+% meshz(x, y, z)
+% view(0, 90);
+% title('方位角=0{\cric}, 仰角=90{\cric}');
+% 
+% subplot(223)
+% surfc(x, y, z)
+% view(90, 0);
+% title('方位角=90{\cric}, 仰角=0{\cric}');
+% 
+% subplot(224)
+% surfl(x, y, z)
+% view(-45, 60);
+% title('方位角=-45{\cric}, 仰角=60{\cric}');
+
+% 色彩处理
+
+
+%  剪裁
+% t = linspace(0, 2*pi, 200);
+% x = sin(t);
+% y = cos(t);
+% p = y > 0.5;
+% y(p) = NaN;
+% plot(x, y)
+% axis([-1.1, 1.1, -1.1, 1.1]);
+% axis square
+% grid on
+% 
+
+% 
+% [x, y, z] = sphere(60);
+% p = z > 0.5;
+% z(p) = NaN;
+% surf(x, y, z)
+% axis([-1, 1, -1, 1, -1, 1])
+% axis equal
+% view(-45, 20)
+
+% =========================================================================
+
+% ======================数据处理===========================================
+% A = [1, 2, 3; 4, 5, 6; 7, 8, 9];
+% x = max(A);       % 返回每列的最大值
+% [x, y] = max(A);    % y 返回最大值的行号
+% % max(A, n)      将小于n的数改为n
+% 
+% mean(A, 2);        % 1 行， 2列
+% median(A);
+% 
+% sum(A(2, :));
+% prod(A(2, :));
+% 
+% cumsum(A(1, :));
+% cumprod(A(1, :));
+
+% std(A, flag, dim)  flag = 0, 样本标准差， flag = 1 总体标准差
+% x = randn(50000, 4);
+% y1 = std(x, 0, 1)
+% y2 = std(x, 1, 1)
+% y3 = std(x, 0, 2)
+
+% corrcoef();  % 相关系数矩阵  
+
+% sort(A, dim, mode)  mode=ascend,   mode=decend降
+
+
+% ====================多项式计算===========================================
+% 多项式系数向量的顺序： 从高到低
+% conv()
+% [Q, r] = deconv()  Q 商式  r 余式
+%  计算
+% f = [3, -5, 0, -7, 5, 6]; 
+% g = [3, 5, -3];
+% g1 = [0, 0, 0, g];    
+% f + g1
+% f - g1
+% conv(f, g)
+% deconv(f, g)
+
+% =====求导
+% polyder([3, 1, 0, -6])
+
+% ========> 求值  polyval     polyvalm
+%=======〉求根  root
+% x = roots([3, 1, 0, -6]);
+% y = poly(x)  %  建立多项式
+
+
+% =======================数据插值==========================================
+% x = [0, 3, 5, 7, 9, 11, 12, 13, 14, 15];
+% y = [0, 1.2, 1.7, 2, 2.1, 2, 1.8, 1.2, 1.0, 1.6];
+% x1 = 0: 0.1: 15;
+% y1 = interp1(x, y, x1, 'spline');
+% plot(x1, y1)
+
+% 插值方法  linear, nearest  pchip(分段三次多项式) spline（三次样条插值）
+
+subplot(221)
+x = [0, 3, 5, 7, 9, 11, 12, 13, 14, 15];
+y = [0, 1.2, 1.7, 2, 2.1, 2, 1.8, 1.2, 1.0, 1.6];
+x1 = 0: 1: 15;
+
+subplot(221)
+y1 = interp1(x, y, x1, 'linear');
+plot(x1, y1)
+title('linear')
+
+subplot(222)
+y2 = interp1(x, y, x1, 'nearest');
+plot(x1, y2)
+title('nearest');
+
+subplot(223)
+y3 = interp1(x, y, x1, 'pchip');
+plot(x1, y3)
+title('pchip');
+
+subplot(224)
+y4 = interp1(x, y, x1, 'spline');
+plot(x1, y4)
+title('spline');
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
